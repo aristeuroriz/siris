@@ -1,1 +1,142 @@
 @import "bootstrap";
+
+.navbar-brand {
+    padding: 0px;
+}
+
+.navbar-brand>img {
+    height: 100px;
+    padding: 5%;
+    margin-top: -2.5%;
+}
+
+$bgDefault: rgb(84, 187, 171);
+$bgHighlight: #fdb700;
+$colDefault: #edf3f7;
+$colHighlight: #ffffff;
+$dropDown: false;
+
+.navbar-default {
+    //background-color: $bgDefault;
+    background-image: linear-gradient(80deg, rgb(0, 92, 169) 30%, rgb(84, 187, 171)); // border-color: $bgHighlight;
+    height: 80px;
+
+    .navbar-nav li a {
+        line-height: 50px;
+    }
+
+    .navbar-brand {
+        color: $colDefault;
+        line-height: 50px;
+
+        &:hover,
+        &:focus {
+            color: $colHighlight;
+        }
+    }
+
+    .navbar-text {
+        color: $colDefault;
+    }
+
+    .navbar-nav {
+        >li {
+            >a {
+                color: $colDefault;
+
+                &:hover,
+                &:focus {
+                    color: $colHighlight;
+                }
+            }
+
+            @if $dropDown {
+                >.dropdown-menu {
+                    background-color: $bgDefault;
+
+                    >li {
+                        >a {
+                            color: $colDefault;
+
+                            &:hover,
+                            &:focus {
+                                color: $colHighlight;
+                                background-color: $bgHighlight;
+                            }
+                        }
+
+                        &.divider {
+                            background-color: $bgHighlight;
+                        }
+                    }
+                }
+            }
+        }
+
+        >.active {
+            >a,
+            >a:hover,
+            >a:focus {
+                color: $colHighlight;
+                background-color: $bgHighlight;
+            }
+        }
+
+        >.open {
+            >a,
+            >a:hover,
+            >a:focus {
+                color: $colHighlight;
+                background-color: $bgHighlight;
+            }
+        }
+    }
+
+    .navbar-toggle {
+        border-color: $bgHighlight;
+
+        &:hover,
+        &:focus {
+            background-color: $bgHighlight;
+        }
+
+        .icon-bar {
+            background-color: $colDefault;
+        }
+    }
+
+    .navbar-collapse,
+    .navbar-form {
+        border-color: $colDefault;
+    }
+
+    .navbar-link {
+        color: $colDefault;
+
+        &:hover {
+            color: $colHighlight;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu {
+        >li>a {
+            color: $colDefault;
+
+            &:hover,
+            &:focus {
+                color: $colHighlight;
+            }
+        }
+
+        >.active {
+            >a,
+            >a:hover,
+            >a:focus {
+                color: $colHighlight;
+                background-color: $bgHighlight;
+            }
+        }
+    }
+}
