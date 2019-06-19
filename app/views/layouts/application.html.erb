@@ -3,54 +3,48 @@
   <head>
     <title>SIRIS ADMIN</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <div class="container-fluid">
-              <% if current_user %>
-          <nav class="navbar navbar-fixed-top navbar-default navbar-caixa" role="navigation">
-            <div class="container">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsable">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <%= link_to (image_tag 'CAIXA_chapada_negativa.png'), root_path, class: 'navbar-brand'%>
-              </div>
-              <div class="collapse navbar-collapse" id="navbar-collapsable">
-                <ul class="nav navbar-nav" style="margin-left: -8%;">
-                  <li>
-                    <%= link_to "Notícias", news_index_path , class: 'navbar-left' %>
-                  </li>
-                  <li>
-                    <%#= link_to "Mídia", media_path , class: 'navbar-left' %>
-                  </li>
+      <% if current_user %>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">SIRIS</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Mídias<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Notícias</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user ? current_user.email[/[^@]+/] : '' %> <b class="caret"></b></a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to "Sair", destroy_user_session_path, :method => :get, class: "dropdown-item" %>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" align="right">
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user ? current_user.email[/[^@]+/] : '' %> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li> <%= link_to "Sair", destroy_user_session_path, :method => :delete %></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        <% end %>
-      <div class="row">
-        <div class="col">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-          <%= yield %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <% end %>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>
-
   </body>
 </html>
